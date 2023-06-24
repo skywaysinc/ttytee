@@ -1,7 +1,7 @@
 [package]
 name = "ttytee"
 description = "A process that exposes 2 copies of the same TTY"
-version = "1.0.1"
+version = "1.0.2"
 edition = "2021"
 authors = ["Guillaume Binet (Skyways)", "Guillaume Binet <gbin@skyways.com>"]
 # readme = "README.md"
