@@ -37,7 +37,6 @@
 //! Writes from the slaves are not supported.
 //!
 
-
 use clap::{arg, Parser};
 use log::{debug, error, info, warn};
 use serialport::{ClearBuffer, SerialPort, TTYPort};
