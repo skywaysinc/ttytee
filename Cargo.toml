@@ -6,7 +6,6 @@ edition = "2021"
 authors = ["Guillaume Binet (Skyways)", "Guillaume Binet <gbin@skyways.com>"]
 readme = "README.md"
 license = "Apache-2.0"
-license-file = "LICENSE"
 categories = ["aerospace::drones", "science::robotics", "command-line-utilities"]
 homepage = "https://github.com/skywaysinc/ttytee"
 [dependencies]
