@@ -3,7 +3,7 @@
 [![Crates.io](https://img.shields.io/crates/v/ttytee.svg)](https://crates.io/crates/ttytee)
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
-![Concept](https://github.com/skywaysinc/ttytee/blob/main/ttytee.svg.jpg?raw=true)
+![Concept](ttytee.svg?raw=true)
 
 More information is avaiable in the [Crate](https://crates.io/crates/ttytee).
 
