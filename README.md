@@ -1,6 +1,7 @@
 ##  TTYTEE - a system daemon that allow processes to share the same serial port by cloning it.
 
 [![Crates.io](https://img.shields.io/crates/v/ttytee.svg)](https://crates.io/crates/ttytee)
+[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 ![Concept](https://github.com/skywaysinc/ttytee/blob/main/ttytee.svg.jpg?raw=true)
 
