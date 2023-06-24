@@ -2,7 +2,9 @@
 
 [![Crates.io](https://img.shields.io/crates/v/ttytee.svg)](https://crates.io/crates/ttytee)
 
-See the crate description for usage: [Crate](https://crates.io/crates/ttytee)
+![Concept](https://github.com/skywaysinc/ttytee/blob/main/ttytee.svg.jpg?raw=true)
+
+More information is avaiable in the [Crate](https://crates.io/crates/ttytee).
 
 ### For people new to rust we left here an easy copy paste doc to get you running if you want to contribute to this crate.
 
