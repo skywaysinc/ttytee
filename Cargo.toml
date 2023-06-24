@@ -10,18 +10,18 @@ categories = ["aerospace::drones", "science::robotics", "command-line-utilities"
 homepage = "https://github.com/skywaysinc/ttytee"
 [dependencies]
 # By default it used libudev to enumerate ports and it complicates the cross-compilation (and we don't need it).
-serialport = { version = "*", default-features = false}
+serialport = { version = "4.2", default-features = false}
 # compiles out debug log statements from the released version.
-log = { version = "*", features = ["max_level_debug", "release_max_level_warn"] }
+log = { version = "0.4", features = ["max_level_debug", "release_max_level_warn"] }
 # redirect panics to the log.
-log-panics = { version = "*", features = ["with-backtrace"]}
+log-panics = { version = "2.1", features = ["with-backtrace"]}
 # the output side if the log is simplelog.
-simplelog = { version = "*", features = ["paris"] }
+simplelog = { version = "0.12", features = ["paris"] }
 # clap is a popular command line parsing crate.
-clap = { version="*", features = ["derive"]}
+clap = { version="4.3", features = ["derive"]}
 
 [dev-dependencies]
-ctor = "*"
+ctor = "0.2"
 
 # This is a very prod profile to build for tight platforms if needed. Use release for now.
 # It can reduce ~x10 the size of the executable.
