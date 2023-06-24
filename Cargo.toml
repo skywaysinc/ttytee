@@ -1,7 +1,8 @@
 [package]
 name = "ttytee"
-version = "0.1.0"
+version = "1.0.0"
 edition = "2021"
+authors = ["Guillaume Binet (Skyways)", "Guillaume Binet <gbin@skyways.com>"]
 
 [dependencies]
 # By default it used libudev to enumerate ports and it complicates the cross-compilation (and we don't need it).
