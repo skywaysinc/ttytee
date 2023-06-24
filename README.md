@@ -63,7 +63,7 @@ cargo test
 
 #### Formatting the entire project
 ```
-cargot fmt
+cargo fmt
 ```
 
 ### Cross compiling for ARM targets
