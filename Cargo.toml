@@ -1,9 +1,14 @@
 [package]
 name = "ttytee"
+description = "A process that exposes 2 copies of the same TTY"
 version = "1.0.0"
 edition = "2021"
 authors = ["Guillaume Binet (Skyways)", "Guillaume Binet <gbin@skyways.com>"]
-
+readme = "README.md"
+license = "Apache-2.0"
+license-file = "LICENSE"
+categories = ["aerospace::drones", "science::robotics", "command-line-utilities"]
+homepage = "https://github.com/skywaysinc/ttytee"
 [dependencies]
 # By default it used libudev to enumerate ports and it complicates the cross-compilation (and we don't need it).
 serialport = { version = "*", default-features = false}
