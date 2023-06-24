@@ -119,7 +119,7 @@ file target/armv7-unknown-linux-musleabihf/stripped/ttytee`
 target/armv7-unknown-linux-musleabihf/stripped/ttytee: ELF 32-bit LSB executable, ARM, EABI5 version 1 (SYSV), statically linked, stripped
 ```
 
-#### For the current 64bit version (once we update the rPIs)
+#### For an ARM 64bit version
 
 The standard arm toolchain from arm then works, not that you can probably find it in your distribution too.
 
