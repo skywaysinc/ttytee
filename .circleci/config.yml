@@ -1,0 +1,135 @@
+version: 2.1
+jobs:
+  lint:
+    working_directory: ~/ttytee
+    docker:
+      - image: cimg/rust:1.69.0
+    steps:
+      - checkout:
+          path: ~/ttytee
+
+      - run:
+          name: Run format check
+          when: always
+          command: |
+            cargo fmt --check
+
+  run-tests:
+    working_directory: ~/ttytee
+    docker:
+      - image: cimg/rust:1.69.0
+    steps:
+      - checkout:
+          path: ~/ttytee
+
+      - run:
+          name: Run tests
+          command: |
+            cargo test
+
+  compile-x86-64:
+    working_directory: ~/ttytee
+    docker:
+      - image: cimg/rust:1.69.0
+    steps:
+      - checkout:
+          path: ~/ttytee
+
+      - run:
+          name: Build release
+          command: |
+            cargo build --release
+
+
+  compile-armv7:
+    working_directory: ~/ttytee
+    docker:
+      - image: cimg/rust:1.69.0
+    steps:
+      - checkout:
+          path: ~/ttytee
+
+      - restore_cache:
+          key: rustaarch32-{{ checksum "Cargo.toml" }}
+
+      - run:
+          name: Install Arm 32bit toolchain
+          command: |
+            rustup target add armv7-unknown-linux-musleabihf
+            cp .circleci/cargo/config.toml ~/.cargo/
+            pushd ~
+            wget https://more.musl.cc/11.2.1/x86_64-linux-musl/arm-linux-musleabihf-cross.tgz
+            tar xvf arm-linux-musleabihf-cross.tgz
+            popd
+
+      - save_cache:
+          key: rustaarch32-{{ checksum "Cargo.toml" }}
+          paths:
+            - ~/.rustup
+            - ~/.cargo
+            - ~/arm-linux-musleabihf-cross
+
+      - run:
+          name: Compile for Arm
+          command: |
+            cargo build --release --target=armv7-unknown-linux-musleabihf
+
+      - when:
+          condition:
+            equal: [ main, << pipeline.git.branch >> ]
+          steps:
+            - store_artifacts:
+                path: target/armv7-unknown-linux-musleabihf/release/ttytee
+                destination: ttytee-armv7
+
+  compile-aarch64:
+    working_directory: ~/ttytee
+    docker:
+      - image: cimg/rust:1.69.0
+    steps:
+      - checkout:
+          path: ~/ttytee
+
+      - restore_cache:
+          key: rust-{{ checksum "Cargo.toml" }}
+
+      - run:
+          name: Install Arm toolchain
+          command: |
+            rustup target add aarch64-unknown-linux-gnu
+            cp .circleci/cargo/config.toml ~/.cargo/
+            pushd ~
+            wget https://developer.arm.com/-/media/Files/downloads/gnu-a/10.3-2021.07/binrel/gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux-gnu.tar.xz
+            tar xvf gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux-gnu.tar.xz
+            popd
+
+      - save_cache:
+          key: rust-{{ checksum "Cargo.toml" }}
+          paths:
+            - ~/gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux-gnu
+            - ~/.rustup
+            - ~/.cargo
+
+      - run:
+          name: Compile for Arm
+          command: |
+            cargo build --release --target=aarch64-unknown-linux-gnu
+
+      # Only produce a build on the main branch.
+      - when:
+          condition:
+            equal: [ main, << pipeline.git.branch >> ]
+          steps:
+            - store_artifacts:
+                path: target/aarch64-unknown-linux-gnu/release/ttytee
+                destination: ttytee-aarch64
+
+workflows:
+  version: 2
+  ttytee:
+    jobs:
+      - run-tests
+      - lint
+      - compile-x86-64
+      - compile-aarch64
+      - compile-armv7
